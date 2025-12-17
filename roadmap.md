@@ -31,8 +31,8 @@ Each day has a *clear deliverable* to keep scope under control.
 ## 📅 Week 1 — Core Editor (MVP)
 
 ### Day 1 — Project Setup & Skeleton
-- [ ] Create Rust project (`cargo new pixi`)
-- [ ] Integrate `eframe` / `egui`
+- [x] Create Rust project (`cargo new pixi`)
+- [x] Integrate `eframe` / `egui`
 - [ ] Window with basic layout:
   - Menu bar
   - Toolbar (left)
