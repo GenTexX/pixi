@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-eframe = "0.28"
-egui = "0.28"
+eframe = "0.33"
+egui = "0.33"
 image = "0.25"
 serde = { version = "1.0", features = ["derive"] }
+egui_dock = "0.18"
