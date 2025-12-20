@@ -1,13 +1,13 @@
 use egui::Ui;
-use egui_dock::{DockArea, DockState, Style};
+use egui_dock::{DockArea, DockState, Style, dock_state};
 
 use crate::{
     model::document::Document,
     ui::{
-        doc_id::{DocId}, document::{
+        doc_id::DocId, document::{
             document_ui_state::DocumentUiState,
             document_workspace_panel_viewer::DocumentWorkspacePanelViewer,
-        }, view::{color_palette::ColorPaletteView, layers::LayersView, toolbar::ToolbarView}
+        }, view::{canvas::Canvas, color_palette::ColorPaletteView, layers::LayersView, toolbar::ToolbarView}
     },
 };
 
@@ -19,24 +19,27 @@ pub struct DocumentWorkspace {
     color_palette: ColorPaletteView,
     layers: LayersView,
     toolbar: ToolbarView,
+    canvas: Canvas
 }
 
 pub enum Panel {
     Palette,
     Layers,
     Toolbar,
+    Canvas,
 }
 
 impl DocumentWorkspace {
     pub fn new(doc_id: DocId) -> Self {
         Self {
             state: DocumentUiState::new(),
-            dock_state: DockState::new(vec![Panel::Palette, Panel::Layers, Panel::Toolbar]),
+            dock_state: DockState::new(vec![Panel::Palette, Panel::Layers, Panel::Toolbar, Panel::Canvas]),
             doc_id: doc_id,
             document: Document::untitled(),
             color_palette: ColorPaletteView::default(),
             layers: LayersView::default(),
             toolbar: ToolbarView::default(),
+            canvas: Canvas::default(),
         }
     }
 
@@ -54,6 +57,7 @@ impl DocumentWorkspace {
                 color_palette: &mut self.color_palette,
                 layers: &mut self.layers,
                 toolbar: &mut self.toolbar,
+                canvas: &mut self.canvas,
             };
 
             DockArea::new(&mut self.dock_state)
